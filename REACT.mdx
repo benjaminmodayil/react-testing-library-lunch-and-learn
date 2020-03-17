@@ -1,0 +1,135 @@
+# @testing-library/react
+
+---
+
+## What's `@testing-library/react`?
+
+React Testing Library is a wrapper of DOM testing library. What this new library allows us to do is test our features and components as a user might.
+
+---
+
+Is it a replacement for Jest?
+
+No.
+
+Is it a replacement for Enzyme?
+
+Yes.
+
+---
+
+Are we switching to it over Enzyme? While, we have access it it, learning a new library can be tough so you'll have the ability to use both. Just don't try mixing both with each other...
+
+Learn in your own time, but you'll find testing components easier with React Testing Library.
+
+NAP has been using RTL since we started using hooks. No one is perfect at it, we're still figuring out.
+
+---
+
+## Why @testing-library/react?
+
+- If we wanted things like the new `useEffect` hook, we'd be screwed with Enzyme.
+
+- Drew left us a going away present.
+
+Enzyme has strengths in providing so many utilities in testing, but the API is all across the board and is geared more towards testing "implementation details" of how react works versus how a user might interact with your feature.
+
+RTL has strengths in its API design, where you'll be "limited" to testing things found in the rendered DOM. While it has some API reach that can test React internals, it's designed to not encourage it.
+
+---
+
+## But this comes with a switch in mentality
+
+No more "testing implementation details". Stop testing how code is written, how React internals work (testing how state/props work), and start testing how a user might use your code.
+
+---
+
+A user doesn't check state to see if `isLoading` changed. Instead the user clicks on a button (fires an event) and sees if their content has loaded (sees heading: "Welcome").
+
+Tests are mounted. Encourages less unit tests and more integration and approaches this concept of "Confidence Testing". You are more confident when more components work together and resemble how a user might interact with your app versus when individual components work on their own.
+
+RTL API encourages best practices for interacting/selecting elements. Gives multiple selector methods to grab elements on DOM.
+
+> go to https://testing-library.com/docs/dom-testing-library/cheatsheet#queries
+
+`debug()`
+
+<table>
+  <thead>
+    <tr>
+      <th>Prefix </th>
+      <th>No Match</th>
+      <th>1 Match</th>
+      <th>1+ Match</th>
+      <th>Await?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <strong>getBy</strong>
+      </td>
+      <td>throw</td>
+      <td>return</td>
+      <td>throw</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>findBy</strong>
+      </td>
+      <td>throw</td>
+      <td>return</td>
+      <td>throw</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>queryBy</strong>
+      </td>
+      <td>null</td>
+      <td>return</td>
+      <td>throw</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>getAllBy</strong>
+      </td>
+      <td>throw</td>
+      <td>array</td>
+      <td>array</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>findAllBy</strong>
+      </td>
+      <td>throw</td>
+      <td>array</td>
+      <td>array</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>queryAllBy</strong>
+      </td>
+      <td>[]</td>
+      <td>array</td>
+      <td>array</td>
+      <td>No</td>
+    </tr>
+  </tbody>
+</table>
+<a href="https://testing-library.com/docs/dom-testing-library/cheatsheet">Cheatsheet</a>
+
+A few basic tests. But show multiple ways to query your component.
+
+- counter
+- actual component
+- redux component
+- router component
+- getByText versus queryByText
+- getAllByText
+
+debug(), findBy
